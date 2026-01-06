@@ -7,7 +7,7 @@ const Hero = () => {
   // If you don't want animations, remove the motion components
 
   return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden pt-20">
+    <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-pink-300 pt-20">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-white to-purple-50/30"></div>
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
