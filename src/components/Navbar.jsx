@@ -79,17 +79,16 @@ const Navbar = () => {
               className="group flex items-center space-x-2"
             >
               <div className="relative">
-                <div className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                  SK
-                </div>
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
               <div>
-                <div className="text-lg font-semibold text-gray-900 group-hover:text-gray-700 transition-colors">
-                  Suman Karki
+                <div className="text-lg font-semibold text-gray-900 group-hover:text-pink-700 transition-colors">
+                <p className="italic font-mono text-lg">
+                  &lt; Drisya Giri / &gt;
+                </p>
                 </div>
                 <div className="text-xs text-gray-500 group-hover:text-gray-600 transition-colors">
-                  Full Stack Developer
+                  Full Stack Freak
                 </div>
               </div>
             </a>
@@ -130,7 +129,7 @@ const Navbar = () => {
               className="ml-4 group relative"
             >
               <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg blur opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-              <button className="relative px-6 py-2.5 bg-gradient-to-r from-gray-900 to-gray-800 text-white text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02]">
+              <button className="relative px-6 py-2.5 bg-gradient-to-r from-pink-200 to-pink-400  group-hover:text-pink-700 text-white text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02]">
                 Contact Me
               </button>
             </a>

@@ -26,7 +26,7 @@ const Hero = () => {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 border border-blue-200">
               <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-              <span className="text-sm font-medium text-blue-700">Available for Opportunities</span>
+              <span className="text-sm font-medium text-blue-700">Open For New Opportunities</span>
             </div>
 
             {/* Main Heading */}
@@ -47,7 +47,7 @@ const Hero = () => {
                   Full Stack Developer
                 </span>
               </h2>
-              <p className="text-lg text-gray-600">Specializing in MERN Stack & Modern Web Technologies</p>
+              <p className="text-lg text-gray-600">Exploring in MERN Stack & Web Developments with React Native as well.</p>
             </div>
 
             {/* Description */}
