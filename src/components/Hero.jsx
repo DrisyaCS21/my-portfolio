@@ -34,7 +34,7 @@ const Hero = () => {
               <span className="block">Hey there! I'm</span>
               <span className="relative">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                  Suman Karki
+                  Drisya Giri
                 </span>
                 <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></span>
               </span>
