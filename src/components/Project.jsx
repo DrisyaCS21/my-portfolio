@@ -7,7 +7,7 @@ const Projects = () => {
   const projects = [
     {
     id: 1,
-    title: "Job Portal System",
+    title: "Courier Service System",
     description:
       "A full-stack job portal platform where employers can post jobs and candidates can apply. Includes user authentication, role-based access, job management, and an admin dashboard for monitoring users and postings.",
     technologies: [
@@ -19,8 +19,8 @@ const Projects = () => {
       "Redux",
       "Bootstrap"
     ],
-    github: "https://github.com/yourusername/job-portal",
-    live: "https://jobportal-frontend-pied.vercel.app",
+    github: "https://github.com/Karkisuman73/Project1",
+    live: "https://courier-frontend-theta.vercel.app",
     icon: "💼",
     featured: true,
     category: "fullstack",
@@ -33,7 +33,7 @@ const Projects = () => {
   },
     {
   id: 2,
-  title: "MovieFlix",
+  title: "QR Generator",
   description:
     "A responsive movie browsing website that displays trending, popular, and top-rated movies using a public movie API. Users can explore movie details including ratings, release dates, and overviews in a clean UI.",
   technologies: [
@@ -43,9 +43,9 @@ const Projects = () => {
     "Tailwind CSS",
     "Axios"
   ],
-  github: "https://github.com/yourusername/movieflix",
-  live: "https://movieflix-live-link.com",
-  icon: "🎬",
+  github: "https://github.com/DrisyaCS21/Test-Qr-generator",
+  live: "https://test-qr-generator-six.vercel.app",
+  icon: "⭐️",
   featured: false,
   category: "frontend",
   highlights: [
@@ -55,29 +55,31 @@ const Projects = () => {
     "Clean UI"
   ]
 },
-   {
+  {
   id: 3,
-  title: "GoFrostek E-commerce Website",
+  title: "Stack-Food E-commerce Website",
   description:
-    "A WordPress-based e-commerce website built using WooCommerce, featuring product listings, user authentication, cart functionality, and secure payment integration. Designed for a clean shopping experience and easy product management.",
+    "A Frontend based e-commerce website built using react, featuring menu listings of a restaurant, Practiced for frontend designing. Designed for a clean food ordering experience and easy product management.",
   technologies: [
-    "WordPress",
-    "WooCommerce",
-    "PHP",
-    "MySQL",
-    "Payment Gateway",
-    "Elementor"
+    "React",
+    "TypeScript",
+    "Bootstrap",
+    "React-Bootstrap",
+    "React Router",
+    "Chart.js",
+    "React-ChartJS2",
+    "i18next / react-i18next"
   ],
   github: null,
-  live: "https://gofrostek.com/",
+  live: "https://stack-food-admin-panel-qusa.vercel.app",
   icon: "🧊",
   featured: false,
   category: "ecommerce",
   highlights: [
-    "WooCommerce Setup",
-    "Payment Gateway Integration",
-    "User Login & Checkout",
-    "Product & Order Management"
+    "Interactive Menu Listings",
+    "Order Summary & Calculations",
+    "Internationalization (i18n) Support",
+    "Charts for Sales & Analytics"
   ]
 }
 ,
@@ -96,7 +98,7 @@ const Projects = () => {
   github: "https://github.com/yourusername/gym-website",
   live: "https://www.sastogadget.com/",
   icon: "🏋️",
-  featured: false,
+  featured: true,
   category: "frontend",
   highlights: [
     "WhatsApp Chat Integration",
