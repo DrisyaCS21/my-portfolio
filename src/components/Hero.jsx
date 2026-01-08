@@ -30,14 +30,14 @@ const Hero = () => {
 
           {/* Heading */}
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-            Hey, I’m{" "}
+            Hey 👋 ,<br></br> I’m{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">
               Drisya Giri
             </span>
           </h1>
 
           {/* Role */}
-          <h2 className="text-xl md:text-2xl text-gray-300 mb-6">
+          <h2 className="text-xl md:text-2xl text-white font-semibold mb-6">
             Full-Stack Developer (MERN • React Native)
           </h2>
 
@@ -69,7 +69,7 @@ const Hero = () => {
           <div className="mt-10">
             <p className="text-gray-400 mb-3">Tech Stack</p>
             <div className="flex flex-wrap gap-3">
-              {["React", "Node", "MongoDB", "Express", "TypeScript", "Tailwind"].map(
+              {[ "MongoDB", "Express", "React", "Node","React Native", "Tailwind", "Postman"].map(
                 tech => (
                   <span
                     key={tech}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaCode, FaServer, FaTools, FaRocket, FaBrain, FaLightbulb, FaSync, FaUsers } from 'react-icons/fa';
+import { FaCode, FaServer, FaTools, FaRocket, FaBrain, FaLightbulb, FaSync, FaUsers, FaTruck, FaStepForward } from 'react-icons/fa';
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('frontend');
@@ -10,12 +10,12 @@ const Skills = () => {
       icon: <FaCode className="text-blue-500" />,
       description: "Creating beautiful, responsive user interfaces",
       skills: [
-        { name: "React & Next.js", level: 92, color: "from-blue-400 to-cyan-400", icon: "⚛️" },
-        { name: "JavaScript/TypeScript", level: 90, color: "from-yellow-400 to-orange-400", icon: "📜" },
+        { name: "React", level: 70, color: "from-blue-400 to-cyan-400", icon: "⚛️" },
+        { name: "JavaScript", level: 73, color: "from-yellow-400 to-orange-400", icon: "📜" },
         { name: "HTML5/CSS3", level: 95, color: "from-orange-400 to-red-400", icon: "🎨" },
-        { name: "Tailwind CSS", level: 94, color: "from-teal-400 to-blue-400", icon: "🌀" },
-        { name: "Responsive Design", level: 96, color: "from-green-400 to-emerald-400", icon: "📱" },
-        { name: "UI/UX Principles", level: 88, color: "from-purple-400 to-pink-400", icon: "✨" }
+        { name: "Tailwind CSS", level: 80, color: "from-teal-400 to-blue-400", icon: "🌀" },
+        { name: "Responsive Design", level: 82, color: "from-green-400 to-emerald-400", icon: "📱" }
+        // { name: "UI/UX Principles", level: 88, color: "from-purple-400 to-pink-400", icon: "✨" }
       ]
     },
     backend: {
@@ -23,12 +23,12 @@ const Skills = () => {
       icon: <FaServer className="text-green-500" />,
       description: "Building robust APIs and server-side logic",
       skills: [
-        { name: "Node.js/Express", level: 88, color: "from-green-500 to-emerald-500", icon: "🟢" },
-        { name: "MongoDB", level: 85, color: "from-green-600 to-lime-500", icon: "🍃" },
-        { name: "RESTful APIs", level: 90, color: "from-purple-500 to-indigo-500", icon: "🔗" },
-        { name: "Authentication/JWT", level: 87, color: "from-red-500 to-orange-500", icon: "🔐" },
-        { name: "API Integration", level: 89, color: "from-blue-500 to-purple-500", icon: "🔄" },
-        { name: "Database Design", level: 82, color: "from-gray-600 to-gray-800", icon: "🗄️" }
+        { name: "Node.js/Express", level: 78, color: "from-green-500 to-emerald-500", icon: "🟢" },
+        { name: "MongoDB", level: 80, color: "from-green-600 to-lime-500", icon: "🍃" },
+        { name: "RESTful APIs", level: 80, color: "from-purple-500 to-indigo-500", icon: "🔗" },
+        { name: "Authentication/JWT", level: 82, color: "from-red-500 to-orange-500", icon: "🔐" },
+        { name: "API Integration", level: 90, color: "from-blue-500 to-purple-500", icon: "🔄" },
+        { name: "Database Design", level: 76, color: "from-gray-600 to-gray-800", icon: "🗄️" }
       ]
     },
     tools: {
@@ -36,27 +36,27 @@ const Skills = () => {
       icon: <FaTools className="text-purple-500" />,
       description: "Development workflow and deployment",
       skills: [
-        { name: "Git & GitHub", level: 91, color: "from-gray-700 to-black", icon: "🐙" },
+        { name: "Git & GitHub", level: 88, color: "from-gray-700 to-black", icon: "🐙" },
         { name: "VS Code", level: 96, color: "from-blue-400 to-blue-600", icon: "💻" },
-        { name: "Postman", level: 88, color: "from-orange-500 to-red-500", icon: "📬" },
-        { name: "Vercel/Netlify", level: 86, color: "from-black to-gray-700", icon: "☁️" },
-        { name: "AWS Basics", level: 78, color: "from-orange-400 to-yellow-400", icon: "☁️" },
-        { name: "Docker", level: 75, color: "from-blue-500 to-cyan-500", icon: "🐳" }
+        { name: "Postman", level: 91, color: "from-orange-500 to-red-500", icon: "📬" },
+        { name: "Vercel", level: 86, color: "from-black to-gray-700", icon: "☁️" },
+        { name: "AWS Basics", level: 45, color: "from-orange-400 to-yellow-400", icon: "☁️" },
+        // { name: "Docker", level: 75, color: "from-blue-500 to-cyan-500", icon: "🐳" }
       ]
     }
   };
 
   const softSkills = [
     { 
-      title: "Problem Solving", 
-      description: "Breaking down complex issues into manageable solutions",
-      icon: <FaLightbulb className="text-yellow-500" />,
+      title: "Consistent", 
+      description: "Never giving up until I find a solution to fix it",
+      icon: <FaTools className="text-yellow-500" />,
       color: "from-yellow-50 to-orange-50"
     },
     { 
       title: "Quick Learning", 
       description: "Rapidly adapting to new technologies and frameworks",
-      icon: <FaRocket className="text-red-500" />,
+      icon: <FaLightbulb className="text-red-500" />,
       color: "from-red-50 to-pink-50"
     },
     { 
@@ -75,6 +75,12 @@ const Skills = () => {
       title: "Team Collaboration", 
       description: "Working effectively in team settings",
       icon: <FaUsers className="text-blue-500" />,
+      color: "from-blue-50 to-cyan-50"
+    },
+    { 
+      title: "Problem Solving", 
+      description: "Working effectively for different problems either technical or non-tech",
+      icon: <FaBrain className="text-red-400" />,
       color: "from-blue-50 to-cyan-50"
     }
   ];
@@ -223,8 +229,8 @@ const Skills = () => {
               </p>
               <div className="flex flex-wrap gap-3">
                 <span className="px-4 py-2 bg-blue-500/20 text-blue-700 rounded-lg font-medium">Currently Learning</span>
-                <span className="px-4 py-2 bg-purple-500/20 text-purple-700 rounded-lg font-medium">GraphQL</span>
-                <span className="px-4 py-2 bg-green-500/20 text-green-700 rounded-lg font-medium">AWS Advanced</span>
+                <span className="px-4 py-2 bg-purple-500/20 text-purple-700 rounded-lg font-medium">MERN</span>
+                <span className="px-4 py-2 bg-green-500/20 text-green-700 rounded-lg font-medium">React native</span>
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4">

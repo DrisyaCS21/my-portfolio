@@ -88,7 +88,7 @@ const Navbar = () => {
                 </p>
                 </div>
                 <div className="text-xs text-gray-500 group-hover:text-gray-600 transition-colors">
-                  Full Stack Freak
+                  Freelancer
                 </div>
               </div>
             </a>
@@ -120,7 +120,7 @@ const Navbar = () => {
             </div>
             
             {/* Contact Button */}
-            <a 
+            {/* <a 
               href="#contact"
               onClick={(e) => {
                 e.preventDefault();
@@ -132,7 +132,7 @@ const Navbar = () => {
               <button className="relative px-6 py-2.5 bg-gradient-to-r from-pink-200 to-pink-400  group-hover:text-pink-700 text-white text-sm font-medium rounded-lg shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.02]">
                 Contact Me
               </button>
-            </a>
+            </a> */}
           </div>
 
           {/* Mobile menu button */}
