@@ -5,33 +5,33 @@ const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
 
   const projects = [
-  {
-    id: 1,
-    title: "Courier Service System",
-    description:
-      "A comprehensive courier management system that enables customers to book deliveries, track packages in real-time, and manage shipping logistics. Includes admin dashboard for managing orders, delivery personnel, and shipment tracking.",
-    technologies: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "JWT",
-      "Socket.io",
-      "Tailwind CSS",
-      "Google Maps API"
-    ],
-    github: "https://github.com/Karkisuman73/Project1",
-    live: "https://courier-frontend-theta.vercel.app",
-    icon: "📦",
-    featured: true,
-    category: "fullstack",
-    highlights: [
-      "Real-time Package Tracking",
-      "Delivery Personnel Management",
-      "Customer Booking System",
-      "Admin Dashboard Analytics"
-    ]
-  },
+  // {
+  //   id: 1,
+  //   title: "Courier Service System",
+  //   description:
+  //     "A comprehensive courier management system that enables customers to book deliveries, track packages in real-time, and manage shipping logistics. Includes admin dashboard for managing orders, delivery personnel, and shipment tracking.",
+  //   technologies: [
+  //     "React",
+  //     "Node.js",
+  //     "Express",
+  //     "MongoDB",
+  //     "JWT",
+  //     "Socket.io",
+  //     "Tailwind CSS",
+  //     "Google Maps API"
+  //   ],
+  //   github: "https://github.com/Karkisuman73/Project1",
+  //   live: "https://courier-frontend-theta.vercel.app",
+  //   icon: "📦",
+  //   featured: true,
+  //   category: "fullstack",
+  //   highlights: [
+  //     "Real-time Package Tracking",
+  //     "Delivery Personnel Management",
+  //     "Customer Booking System",
+  //     "Admin Dashboard Analytics"
+  //   ]
+  // },
   {
     id: 2,
     title: "QR Generator",
