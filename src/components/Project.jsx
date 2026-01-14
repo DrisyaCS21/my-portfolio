@@ -5,137 +5,134 @@ const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
 
   const projects = [
-    {
+  {
     id: 1,
     title: "Courier Service System",
     description:
-      "A full-stack job portal platform where employers can post jobs and candidates can apply. Includes user authentication, role-based access, job management, and an admin dashboard for monitoring users and postings.",
+      "A comprehensive courier management system that enables customers to book deliveries, track packages in real-time, and manage shipping logistics. Includes admin dashboard for managing orders, delivery personnel, and shipment tracking.",
     technologies: [
       "React",
       "Node.js",
       "Express",
       "MongoDB",
       "JWT",
-      "Redux",
-      "Bootstrap"
+      "Socket.io",
+      "Tailwind CSS",
+      "Google Maps API"
     ],
     github: "https://github.com/Karkisuman73/Project1",
     live: "https://courier-frontend-theta.vercel.app",
-    icon: "💼",
+    icon: "📦",
     featured: true,
     category: "fullstack",
     highlights: [
-      "Role-based Authentication",
-      "Job Posting & Application System",
-      "Admin Dashboard",
-      "Secure JWT Auth"
+      "Real-time Package Tracking",
+      "Delivery Personnel Management",
+      "Customer Booking System",
+      "Admin Dashboard Analytics"
     ]
   },
-    {
-  id: 2,
-  title: "QR Generator",
-  description:
-    "A responsive movie browsing website that displays trending, popular, and top-rated movies using a public movie API. Users can explore movie details including ratings, release dates, and overviews in a clean UI.",
-  technologies: [
-    "React",
-    "JavaScript",
-    "TMDB API",
-    "Tailwind CSS",
-    "Axios"
-  ],
-  github: "https://github.com/DrisyaCS21/Test-Qr-generator",
-  live: "https://test-qr-generator-six.vercel.app",
-  icon: "⭐️",
-  featured: false,
-  category: "frontend",
-  highlights: [
-    "API Integration",
-    "Responsive Design",
-    "Movie Search & Filter",
-    "Clean UI"
-  ]
-},
   {
-  id: 3,
-  title: "Stack-Food E-commerce Website",
-  description:
-    "A Frontend based e-commerce website built using react, featuring menu listings of a restaurant, Practiced for frontend designing. Designed for a clean food ordering experience and easy product management.",
-  technologies: [
-    "React",
-    "TypeScript",
-    "Bootstrap",
-    "React-Bootstrap",
-    "React Router",
-    "Chart.js",
-    "React-ChartJS2",
-    "i18next / react-i18next"
-  ],
-  github: null,
-  live: "https://stack-food-admin-panel-qusa.vercel.app",
-  icon: "🧊",
-  featured: false,
-  category: "ecommerce",
-  highlights: [
-    "Interactive Menu Listings",
-    "Order Summary & Calculations",
-    "Internationalization (i18n) Support",
-    "Charts for Sales & Analytics"
-  ]
-}
-,
+    id: 2,
+    title: "QR Generator",
+    description:
+      "A versatile QR code generator application that creates customizable QR codes for URLs, text, contact information, and WiFi credentials. Includes download options and history tracking for generated codes.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "QR Code API",
+      "Tailwind CSS",
+      "Local Storage"
+    ],
+    github: "https://github.com/DrisyaCS21/Test-Qr-generator",
+    live: "https://test-qr-generator-six.vercel.app",
+    icon: "🔗",
+    featured: false,
+    category: "frontend",
+    highlights: [
+      "Multiple QR Code Types",
+      "Customizable Design Options",
+      "Download in Multiple Formats",
+      "Generation History"
+    ]
+  },
   {
-  id: 4,
-  title: "Gym Business Website",
-  description:
-    "A modern and responsive gym business website designed to showcase services, trainers, and membership plans. Includes WhatsApp chat redirection for instant customer support and online appointment booking via Google Forms.",
-  technologies: [
-    "React",
-    "Tailwind CSS",
-    "JavaScript",
-    "Google Forms",
-    "WhatsApp Redirect"
-  ],
-  github: "https://github.com/yourusername/gym-website",
-  live: "https://www.sastogadget.com/",
-  icon: "🏋️",
-  featured: true,
-  category: "frontend",
-  highlights: [
-    "WhatsApp Chat Integration",
-    "Online Booking via Google Form",
-    "Responsive Business Website",
-    "Clean UI & UX"
-  ]
-}
-,
+    id: 3,
+    title: "Stack-Food E-commerce Website",
+    description:
+      "A comprehensive restaurant management system with admin panel for menu management, order tracking, and sales analytics. Features multilingual support and real-time order status updates.",
+    technologies: [
+      "React",
+      "JavaScript",
+      "Bootstrap",
+      "React-Bootstrap",
+      "React Router",
+      "Chart.js",
+      "React-ChartJS2",
+      "i18next / react-i18next"
+    ],
+    github: null,
+    live: "https://stack-food-admin-panel-qusa.vercel.app",
+    icon: "🍽️",
+    featured: false,
+    category: "ecommerce",
+    highlights: [
+      "Admin Dashboard for Menu Management",
+      "Sales Analytics with Charts",
+      "Multilingual Support (i18n)",
+      "Order Tracking System"
+    ]
+  },
   {
-  id: 5,
-  title: "Khaja Ghar – Full Stack Restaurant Website",
-  description:
-    "A full-stack restaurant web application that allows customers to browse the digital menu via QR code, place online orders, and enables admins to manage orders and menu items.",
-  technologies: [
-    "React",
-    "Node.js",
-    "Express",
-    "MongoDB",
-    "Tailwind CSS",
-    "Stripe API"
-  ],
-  github: [
-    "https://github.com/Karkisuman73/courier-frontend"
-  ],
-  live: "https://khajaghar.vercel.app",
-  icon: "🍽️",
-  featured: false,
-  category: "fullstack",
-  highlights: [
-    "QR-Based Digital Menu",
-    "Online Ordering & Payments",
-    "Admin Dashboard",
-    "Responsive Design"
-  ]
-},
-  ];
+    id: 4,
+    title: "Gym Business Website",
+    description:
+      "A fitness center website showcasing gym facilities, membership plans, and trainer profiles. Features integrated appointment booking and direct communication with trainers through WhatsApp.",
+    technologies: [
+      "React",
+      "Tailwind CSS",
+      "JavaScript",
+      "WhatsApp API"
+    ],
+    github: "https://github.com/DrisyaCS21/gym-website",
+    live: "https://www.sastogadget.com/",
+    icon: "🏋️",
+    featured: true,
+    category: "frontend",
+    highlights: [
+      "Trainer Profile Showcase",
+      "Membership Plan Comparison",
+      "Direct WhatsApp Integration",
+      "Online Class Booking"
+    ]
+  },
+  {
+    id: 5,
+    title: "Khaja Ghar – Full Stack Restaurant Website",
+    description:
+      "A complete restaurant ordering platform featuring QR code digital menus, online ordering with payment integration, and an admin dashboard for managing orders, menu items, and customer data.",
+    technologies: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+      "QR Code Generation",
+      "Socket.io"
+    ],
+    github: "https://github.com/DrisyaCS21/khajaghar",
+    live: "https://khajaghar.vercel.app",
+    icon: "🥘",
+    featured: false,
+    category: "fullstack",
+    highlights: [
+      "QR Code Digital Menu",
+      "Online Payment Integration",
+      "Real-time Order Updates",
+      "Admin Order Management"
+    ]
+  },
+];
 
   const filters = [
     { id: 'all', label: 'All Projects' },
