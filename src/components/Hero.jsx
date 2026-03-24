@@ -9,7 +9,7 @@ const Hero = () => {
   const textY = useTransform(scrollY, [0, 400], [0, -120]);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center">
       {/* BG */}
       <motion.div
       className="absolute inset-0 bg-center bg-cover"
