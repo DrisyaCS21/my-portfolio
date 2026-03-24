@@ -408,11 +408,11 @@ Sent from portfolio website`;
 
         {/* Footer Note */}
         <div className="text-center border-t border-gray-800 pt-12">
-          <p className="text-gray-500 text-sm font-light italic max-w-2xl mx-auto mb-3">
-            "Great things are never done by one person. They're done by a team of people."
+          <p className="text-gray-500 text-xs font-mono mb-4">
+            © {new Date().getFullYear()} Drisya Giri. All rights reserved.
           </p>
           <p className="text-gray-600 text-xs font-mono">
-            Let's collaborate and create something extraordinary together.
+            Designed & Built by Drisya Giri
           </p>
         </div>
 
