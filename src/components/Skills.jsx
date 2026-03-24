@@ -1,125 +1,109 @@
-import React, { useState } from 'react';
-import { FaCode, FaServer, FaTools, FaRocket, FaBrain, FaLightbulb, FaSync, FaUsers, FaTruck, FaStepForward } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaCode, FaServer, FaTools, FaRocket, FaBrain, FaLightbulb, FaSync, FaUsers, FaReact, FaJs, FaHtml5, FaCss3Alt, FaNodeJs, FaDatabase, FaGitAlt, FaAws, FaFigma } from 'react-icons/fa';
+import { SiTailwindcss, SiMongodb, SiExpress, SiPostman, SiVercel } from 'react-icons/si';
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState('frontend');
+  const [visibleSkills, setVisibleSkills] = useState(false);
+  const skillsRef = useRef(null);
 
   const skillCategories = {
     frontend: {
-      title: "Frontend Development",
-      icon: <FaCode className="text-blue-500" />,
-      description: "Creating beautiful, responsive user interfaces",
-      skills: [
-        { name: "React", level: 70, color: "from-blue-400 to-cyan-400", icon: "⚛️" },
-        { name: "JavaScript", level: 73, color: "from-yellow-400 to-orange-400", icon: "📜" },
-        { name: "HTML5/CSS3", level: 95, color: "from-orange-400 to-red-400", icon: "🎨" },
-        { name: "Tailwind CSS", level: 80, color: "from-teal-400 to-blue-400", icon: "🌀" },
-        { name: "Responsive Design", level: 82, color: "from-green-400 to-emerald-400", icon: "📱" }
-        // { name: "UI/UX Principles", level: 88, color: "from-purple-400 to-pink-400", icon: "✨" }
-      ]
+      title: "Frontend",
+      icon: <FaCode className="text-gray-400" />,
+      skills: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Responsive Design"]
     },
     backend: {
-      title: "Backend Development",
-      icon: <FaServer className="text-green-500" />,
-      description: "Building robust APIs and server-side logic",
-      skills: [
-        { name: "Node.js/Express", level: 78, color: "from-green-500 to-emerald-500", icon: "🟢" },
-        { name: "MongoDB", level: 80, color: "from-green-600 to-lime-500", icon: "🍃" },
-        { name: "RESTful APIs", level: 80, color: "from-purple-500 to-indigo-500", icon: "🔗" },
-        { name: "Authentication/JWT", level: 82, color: "from-red-500 to-orange-500", icon: "🔐" },
-        { name: "API Integration", level: 90, color: "from-blue-500 to-purple-500", icon: "🔄" },
-        { name: "Database Design", level: 76, color: "from-gray-600 to-gray-800", icon: "🗄️" }
-      ]
+      title: "Backend",
+      icon: <FaServer className="text-gray-400" />,
+      skills: ["Node.js", "Express.js", "MongoDB", "RESTful APIs", "JWT Authentication", "API Integration"]
     },
     tools: {
-      title: "DevOps & Tools",
-      icon: <FaTools className="text-purple-500" />,
-      description: "Development workflow and deployment",
-      skills: [
-        { name: "Git & GitHub", level: 88, color: "from-gray-700 to-black", icon: "🐙" },
-        { name: "VPS Hosting", level: 75, color: "from-blue-400 to-blue-600", icon: "💻" },
-        { name: "Postman", level: 91, color: "from-orange-500 to-red-500", icon: "📬" },
-        { name: "Vercel", level: 86, color: "from-black to-gray-700", icon: "☁️" },
-        { name: "AWS Basics", level: 45, color: "from-orange-400 to-yellow-400", icon: "☁️" },
-        // { name: "Docker", level: 75, color: "from-blue-500 to-cyan-500", icon: "🐳" }
-      ]
+      title: "Tools & DevOps",
+      icon: <FaTools className="text-gray-400" />,
+      skills: ["Git & GitHub", "Postman", "Vercel", "VPS Hosting", "AWS Basics", "VS Code"]
     }
   };
 
-  const softSkills = [
-    { 
-      title: "Consistent", 
-      description: "Never giving up until I find a solution to fix it",
-      icon: <FaTools className="text-yellow-500" />,
-      color: "from-yellow-50 to-orange-50"
-    },
-    { 
-      title: "Quick Learning", 
-      description: "Rapidly adapting to new technologies and frameworks",
-      icon: <FaLightbulb className="text-red-500" />,
-      color: "from-red-50 to-pink-50"
-    },
-    { 
-      title: "Strategic Thinking", 
-      description: "Planning scalable and maintainable solutions",
-      icon: <FaBrain className="text-purple-500" />,
-      color: "from-purple-50 to-indigo-50"
-    },
-    { 
-      title: "Adaptability", 
-      description: "Thriving in dynamic and changing environments",
-      icon: <FaSync className="text-green-500" />,
-      color: "from-green-50 to-teal-50"
-    },
-    { 
-      title: "Team Collaboration", 
-      description: "Working effectively in team settings",
-      icon: <FaUsers className="text-blue-500" />,
-      color: "from-blue-50 to-cyan-50"
-    },
-    { 
-      title: "Problem Solving", 
-      description: "Working effectively for different problems either technical or non-tech",
-      icon: <FaBrain className="text-red-400" />,
-      color: "from-blue-50 to-cyan-50"
-    }
-  ];
+  const getSkillIcon = (skill) => {
+    const icons = {
+      'React': <FaReact className="text-blue-400" />,
+      'JavaScript': <FaJs className="text-yellow-400" />,
+      'HTML5': <FaHtml5 className="text-orange-500" />,
+      'CSS3': <FaCss3Alt className="text-blue-500" />,
+      'Tailwind CSS': <SiTailwindcss className="text-cyan-400" />,
+      'Node.js': <FaNodeJs className="text-green-500" />,
+      'Express.js': <SiExpress className="text-gray-400" />,
+      'MongoDB': <SiMongodb className="text-green-600" />,
+      'Git & GitHub': <FaGitAlt className="text-orange-600" />,
+      'Postman': <SiPostman className="text-orange-500" />,
+      'Vercel': <SiVercel className="text-gray-400" />,
+      'AWS Basics': <FaAws className="text-orange-400" />
+    };
+    return icons[skill] || <FaCode className="text-gray-500" />;
+  };
 
-  const currentCategory = skillCategories[activeCategory];
+  // Intersection Observer for skills animation
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleSkills(true);
+        }
+      },
+      { threshold: 0.2, rootMargin: '50px' }
+    );
+
+    if (skillsRef.current) {
+      observer.observe(skillsRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <section id="skills" className="relative min-h-screen py-24 overflow-hidden bg-gradient-to-b from-white to-gray-50/30">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-50/30 via-transparent to-transparent"></div>
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-cyan-300 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
-      <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+    <section id="skills" className="relative min-h-screen py-24 bg-black">
+      {/* Minimal Background */}
+      <div className="absolute inset-0 bg-black"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 border border-blue-200 mb-6">
-            <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></span>
-            <span className="text-sm font-medium text-blue-700">Technical Expertise</span>
+        {/* Section Header with Waving Rabbit */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 mb-6">
+            <span className="w-8 h-px bg-gray-600"></span>
+            <span className="text-sm font-mono text-gray-500 tracking-wider">EXPERTISE</span>
+            <span className="w-8 h-px bg-gray-600"></span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Technical Stack</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            A comprehensive overview of my technical skills, tools, and methodologies
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <h2 className="text-4xl md:text-5xl font-light text-white tracking-tight">
+              Technical Skills
+            </h2>
+            {/* Waving Rabbit Icon */}
+            {/* <div className="relative group">
+              <span className="text-4xl inline-block animate-wave cursor-pointer">
+                🐰
+              </span>
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1 bg-gray-800 text-white text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                Hey there! 👋
+              </div>
+            </div> */}
+          </div>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg font-light">
+            Technologies and tools I work with to bring ideas to life
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* Category Tabs - Minimal Style */}
+        <div className="flex flex-wrap justify-center gap-2 mb-16">
           {Object.entries(skillCategories).map(([key, category]) => (
             <button
               key={key}
               onClick={() => setActiveCategory(key)}
-              className={`flex items-center gap-3 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+              className={`flex items-center gap-2 px-6 py-2 text-sm font-mono transition-all duration-300 ${
                 activeCategory === key
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
-                  : 'bg-white text-gray-700 hover:text-blue-600 border border-gray-200 hover:border-blue-300 hover:shadow-md'
+                  ? 'text-white border-b-2 border-white'
+                  : 'text-gray-500 hover:text-gray-300 border-b-2 border-transparent hover:border-gray-600'
               }`}
             >
               {category.icon}
@@ -128,142 +112,158 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Main Skills Display */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
-          {/* Left Column - Progress Bars */}
-          <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
-            <div className="flex items-center gap-3 mb-8">
-              {currentCategory.icon}
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900">{currentCategory.title}</h3>
-                <p className="text-gray-600">{currentCategory.description}</p>
+        {/* Skills Grid - Simplified */}
+        <div 
+          ref={skillsRef}
+          className={`transition-all duration-1000 transform ${
+            visibleSkills
+              ? 'opacity-100 translate-y-0'
+              : 'opacity-0 translate-y-12'
+          }`}
+        >
+          <div className="border border-gray-800 p-10 md:p-12 hover:border-gray-700 transition-all duration-500">
+            <div className="flex items-center gap-3 mb-10">
+              <div className="text-2xl">
+                {skillCategories[activeCategory].icon}
               </div>
+              <h3 className="text-xl font-light text-white">
+                {skillCategories[activeCategory].title} Development
+              </h3>
             </div>
 
-            <div className="space-y-8">
-              {currentCategory.skills.map((skill, index) => (
-                <div key={index} className="group">
-                  <div className="flex justify-between items-center mb-3">
-                    <div className="flex items-center gap-3">
-                      <span className="text-xl">{skill.icon}</span>
-                      <span className="font-semibold text-gray-800">{skill.name}</span>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {skillCategories[activeCategory].skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="group p-4 border border-gray-800 hover:border-gray-600 transition-all duration-300 hover:-translate-y-1"
+                  style={{
+                    transitionDelay: `${index * 50}ms`
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="text-xl transition-transform duration-300 group-hover:scale-110">
+                      {getSkillIcon(skill)}
                     </div>
-                    <span className="font-bold text-gray-700">{skill.level}%</span>
-                  </div>
-                  
-                  <div className="relative">
-                    <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`}
-                        style={{ width: `${skill.level}%` }}
-                      />
-                    </div>
-                    {/* Glow effect on hover */}
-                    <div className="absolute inset-0 h-3 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                    <span className="text-sm text-gray-300 font-light group-hover:text-white transition-colors">
+                      {skill}
+                    </span>
                   </div>
                 </div>
               ))}
             </div>
           </div>
-
-          {/* Right Column - Skill Visualizations */}
-          <div className="grid grid-cols-2 gap-4">
-            {currentCategory.skills.slice(0, 4).map((skill, index) => (
-              <div key={index} className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-500"></div>
-                <div className="relative bg-white rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-3xl">{skill.icon}</span>
-                    <span className="text-2xl font-bold text-gray-800">{skill.level}%</span>
-                  </div>
-                  <h4 className="font-bold text-gray-900 mb-2">{skill.name}</h4>
-                  <p className="text-sm text-gray-600">
-                    {skill.name.includes('React') && 'Component architecture, hooks, state management'}
-                    {skill.name.includes('JavaScript') && 'ES6+, async programming, DOM manipulation'}
-                    {skill.name.includes('HTML5/CSS3') && 'Semantic HTML, CSS Grid, Flexbox'}
-                    {skill.name.includes('Tailwind') && 'Utility-first CSS, responsive design'}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
-        {/* Soft Skills Section */}
-        <div className="mb-20">
+        {/* Soft Skills Section - Simplified */}
+        <div className="mt-24">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Professional Attributes</h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Beyond technical expertise, these qualities help me deliver exceptional results
+            <h3 className="text-2xl font-light text-white mb-3">Professional Attributes</h3>
+            <p className="text-gray-500 text-sm font-light max-w-2xl mx-auto">
+              Beyond technical expertise
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
-            {softSkills.map((skill, index) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { title: "Consistent", description: "Persistent problem-solving until solutions are found", icon: <FaTools /> },
+              { title: "Quick Learning", description: "Rapid adaptation to new technologies and frameworks", icon: <FaLightbulb /> },
+              { title: "Strategic Thinking", description: "Planning scalable and maintainable solutions", icon: <FaBrain /> },
+              { title: "Adaptability", description: "Thriving in dynamic and changing environments", icon: <FaSync /> },
+              { title: "Team Collaboration", description: "Working effectively in team settings", icon: <FaUsers /> },
+              { title: "Problem Solving", description: "Effective solutions for technical and non-technical challenges", icon: <FaBrain /> }
+            ].map((skill, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden"
+                className="group border border-gray-800 p-6 hover:border-gray-700 transition-all duration-500 hover:-translate-y-1"
+                style={{
+                  transitionDelay: `${index * 100}ms`,
+                  animation: visibleSkills ? 'fadeInUp 0.6s ease-out forwards' : 'none',
+                  opacity: 0,
+                  animationDelay: `${0.3 + index * 0.1}s`
+                }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
-                <div className="relative bg-white rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                  <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-white to-gray-50 flex items-center justify-center mb-4 shadow-sm">
-                    <div className="text-2xl">
-                      {skill.icon}
-                    </div>
+                <div className="w-10 h-10 flex items-center justify-center mb-4">
+                  <div className="text-xl text-gray-500 group-hover:text-gray-300 transition-colors">
+                    {skill.icon}
                   </div>
-                  <h4 className="text-lg font-bold text-gray-900 mb-3">{skill.title}</h4>
-                  <p className="text-gray-600 text-sm">{skill.description}</p>
                 </div>
+                <h4 className="text-lg font-light text-white mb-2">{skill.title}</h4>
+                <p className="text-gray-500 text-sm font-light">{skill.description}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Learning Journey */}
-        <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl p-8 border border-blue-200/50">
+        {/* Learning Journey - Simplified */}
+        <div className="mt-24 border border-gray-800 p-8 hover:border-gray-700 transition-all duration-500">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Continuous Learning Journey</h3>
-              <p className="text-gray-600 mb-6">
-                I believe in constant growth and stay updated with the latest technologies and best practices in web development.
+              <h3 className="text-xl font-light text-white mb-3">Continuous Learning Journey</h3>
+              <p className="text-gray-500 text-sm font-light">
+                Constantly growing and staying updated with the latest technologies and best practices.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 bg-blue-500/20 text-blue-700 rounded-lg font-medium">Currently Learning</span>
-                <span className="px-4 py-2 bg-purple-500/20 text-purple-700 rounded-lg font-medium">MERN</span>
-                <span className="px-4 py-2 bg-green-500/20 text-green-700 rounded-lg font-medium">React native</span>
-              </div>
             </div>
-            <div className="grid grid-cols-3 gap-4">
-              <div className="text-center p-4 bg-white/50 backdrop-blur-sm rounded-xl">
-                <div className="text-3xl font-bold text-blue-600 mb-2">15+</div>
-                <div className="text-gray-600">Technologies</div>
-              </div>
-              <div className="text-center p-4 bg-white/50 backdrop-blur-sm rounded-xl">
-                <div className="text-3xl font-bold text-purple-600 mb-2">6+</div>
-                <div className="text-gray-600">Months Experience</div>
-              </div>
-              <div className="text-center p-4 bg-white/50 backdrop-blur-sm rounded-xl">
-                <div className="text-3xl font-bold text-green-600 mb-2">100+</div>
-                <div className="text-gray-600">Hours Learning</div>
-              </div>
+            <div className="flex flex-wrap gap-3">
+              <span className="text-xs font-mono text-gray-400 border border-gray-800 px-3 py-2 hover:border-gray-600 transition-all">
+                Currently: MERN Stack
+              </span>
+              <span className="text-xs font-mono text-gray-400 border border-gray-800 px-3 py-2 hover:border-gray-600 transition-all">
+                Next: React Native
+              </span>
+              <span className="text-xs font-mono text-gray-400 border border-gray-800 px-3 py-2 hover:border-gray-600 transition-all">
+                Exploring: TypeScript
+              </span>
             </div>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Need a developer with these skills? Let's discuss how I can contribute to your project.
+        {/* <div className="mt-16 text-center border-t border-gray-800 pt-12">
+          <p className="text-gray-500 mb-6 text-sm font-light tracking-wide">
+            READY TO COLLABORATE?
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="inline-flex items-center gap-3 px-8 py-3 border border-gray-700 text-white hover:border-gray-500 transition-all duration-300 group"
           >
-            <span>Discuss Your Project</span>
-            <FaRocket />
+            <span className="font-mono text-sm tracking-wider">LET'S WORK TOGETHER</span>
+            <FaRocket className="text-xs group-hover:translate-x-1 transition-transform" />
           </a>
-        </div>
+        </div> */}
       </div>
+
+      {/* Add custom animation styles */}
+      <style jsx>{`
+        @keyframes wave {
+          0% { transform: rotate(0deg); }
+          20% { transform: rotate(14deg); }
+          40% { transform: rotate(-8deg); }
+          60% { transform: rotate(14deg); }
+          80% { transform: rotate(-4deg); }
+          100% { transform: rotate(0deg); }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-wave {
+          animation: wave 2s ease-in-out infinite;
+          transform-origin: 70% 70%;
+          display: inline-block;
+        }
+        
+        .animate-wave:hover {
+          animation: wave 0.8s ease-in-out;
+        }
+      `}</style>
     </section>
   );
 };
