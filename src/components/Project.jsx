@@ -1,42 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaExternalLinkAlt, FaStar, FaCode, FaEye } from 'react-icons/fa';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [visibleProjects, setVisibleProjects] = useState([]);
+  const projectRefs = useRef([]);
 
   const projects = [
-  // {
-  //   id: 1,
-  //   title: "Courier Service System",
-  //   description:
-  //     "A comprehensive courier management system that enables customers to book deliveries, track packages in real-time, and manage shipping logistics. Includes admin dashboard for managing orders, delivery personnel, and shipment tracking.",
-  //   technologies: [
-  //     "React",
-  //     "Node.js",
-  //     "Express",
-  //     "MongoDB",
-  //     "JWT",
-  //     "Socket.io",
-  //     "Tailwind CSS",
-  //     "Google Maps API"
-  //   ],
-  //   github: "https://github.com/Karkisuman73/Project1",
-  //   live: "https://courier-frontend-theta.vercel.app",
-  //   icon: "📦",
-  //   featured: true,
-  //   category: "fullstack",
-  //   highlights: [
-  //     "Real-time Package Tracking",
-  //     "Delivery Personnel Management",
-  //     "Customer Booking System",
-  //     "Admin Dashboard Analytics"
-  //   ]
-  // },
   {
-    id: 2,
+    id: 1,
     title: "QR Generator",
     description:
-      "A versatile QR code generator application that creates customizable QR codes for URLs, text, contact information, and WiFi credentials. Includes download options and history tracking for generated codes.",
+      "A versatile QR code generator application that creates customizable QR codes for URLs, text, contact information, and WiFi credentials. Includes download options and history tracking.",
     technologies: [
       "React",
       "JavaScript",
@@ -51,25 +26,22 @@ const Projects = () => {
     category: "frontend",
     highlights: [
       "Multiple QR Code Types",
-      "Customizable Design Options",
-      "Download in Multiple Formats",
+      "Customizable Design",
+      "Multiple Formats",
       "Generation History"
     ]
   },
   {
-    id: 3,
-    title: "Stack-Food E-commerce Website",
+    id: 2,
+    title: "Stack-Food E-commerce",
     description:
       "A comprehensive restaurant management system with admin panel for menu management, order tracking, and sales analytics. Features multilingual support and real-time order status updates.",
     technologies: [
       "React",
       "JavaScript",
       "Bootstrap",
-      "React-Bootstrap",
-      "React Router",
       "Chart.js",
-      "React-ChartJS2",
-      "i18next / react-i18next"
+      "i18next"
     ],
     github: null,
     live: "https://stack-food-admin-panel-qusa.vercel.app",
@@ -77,17 +49,17 @@ const Projects = () => {
     featured: false,
     category: "ecommerce",
     highlights: [
-      "Admin Dashboard for Menu Management",
-      "Sales Analytics with Charts",
-      "Multilingual Support (i18n)",
-      "Order Tracking System"
+      "Admin Dashboard",
+      "Sales Analytics",
+      "Multilingual Support",
+      "Order Tracking"
     ]
   },
   {
-    id: 4,
+    id: 3,
     title: "Gym Business Website",
     description:
-      "A fitness center website showcasing gym facilities, membership plans, and trainer profiles. Features integrated appointment booking and direct communication with trainers through WhatsApp.",
+      "A fitness center website showcasing gym facilities, membership plans, and trainer profiles. Features integrated appointment booking and direct communication with trainers.",
     technologies: [
       "React",
       "Tailwind CSS",
@@ -100,42 +72,41 @@ const Projects = () => {
     featured: true,
     category: "frontend",
     highlights: [
-      "Trainer Profile Showcase",
-      "Membership Plan Comparison",
-      "Direct WhatsApp Integration",
-      "Online Class Booking"
+      "Trainer Profiles",
+      "Membership Plans",
+      "WhatsApp Integration",
+      "Class Booking"
     ]
   },
   {
-    id: 5,
-    title: "Khaja Ghar – Full Stack Restaurant Website",
+    id: 4,
+    title: "Khaja Ghar – Restaurant",
     description:
-      "A complete restaurant ordering platform featuring QR code digital menus, online ordering with payment integration, and an admin dashboard for managing orders, menu items, and customer data.",
+      "A complete restaurant ordering platform featuring QR code digital menus, online ordering with payment integration, and an admin dashboard for managing orders and menu items.",
     technologies: [
       "React",
       "Node.js",
       "Express",
       "MongoDB",
       "Tailwind CSS",
-      "QR Code Generation",
       "Socket.io"
     ],
     github: "https://github.com/DrisyaCS21/khajaghar",
     live: "https://khajaghar.vercel.app",
     icon: "🥘",
-    featured: false,
+    featured: true,
     category: "fullstack",
     highlights: [
-      "QR Code Digital Menu",
-      "Online Payment Integration",
-      "Real-time Order Updates",
-      "Admin Order Management"
+      "QR Digital Menu",
+      "Payment Integration",
+      "Real-time Updates",
+      "Order Management"
     ]
   },
 ];
 
   const filters = [
-    { id: 'all', label: 'All Projects' },
+    { id: 'all', label: 'All' },
     { id: 'fullstack', label: 'Full Stack' },
     { id: 'frontend', label: 'Frontend' },
     { id: 'featured', label: 'Featured' }
@@ -147,39 +118,66 @@ const Projects = () => {
     ? projects.filter(p => p.featured)
     : projects.filter(p => p.category === activeFilter);
 
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = projectRefs.current.findIndex(ref => ref === entry.target);
+            if (index !== -1) {
+              setVisibleProjects(prev => [...prev, index]);
+            }
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    projectRefs.current.forEach(ref => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, [filteredProjects]);
+
+  useEffect(() => {
+    setVisibleProjects([]);
+    projectRefs.current = [];
+  }, [activeFilter]);
+
   return (
-    <section id="projects" className="relative min-h-screen py-24 overflow-hidden bg-gradient-to-b from-white to-gray-50/50">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50/20 via-transparent to-transparent"></div>
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+    <section id="projects" className="relative min-h-screen py-24 bg-black">
+      {/* Minimal Background - Solid Black */}
+      <div className="absolute inset-0 bg-black"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 border border-blue-200 mb-6">
-            <FaCode className="text-blue-600" />
-            <span className="text-sm font-medium text-blue-700">My Work Portfolio</span>
+        {/* Section Header - Minimal Style */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 mb-6">
+            <span className="w-8 h-px bg-gray-600"></span>
+            <span className="text-sm font-mono text-gray-500 tracking-wider">PROJECTS</span>
+            <span className="w-8 h-px bg-gray-600"></span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-light text-white mb-4 tracking-tight">
+            Featured Work
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            A showcase of my recent work, highlighting technical skills and problem-solving abilities
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg font-light">
+            A selection of my recent projects
           </p>
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* Filter Buttons - Minimal Style */}
+        <div className="flex flex-wrap justify-center gap-2 mb-16">
           {filters.map((filter) => (
             <button
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+              className={`px-6 py-2 text-sm font-mono transition-all duration-300 ${
                 activeFilter === filter.id
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
-                  : 'bg-white text-gray-700 hover:text-blue-600 border border-gray-200 hover:border-blue-300 hover:shadow-md'
+                  ? 'text-white border-b-2 border-white'
+                  : 'text-gray-500 hover:text-gray-300 border-b-2 border-transparent hover:border-gray-600'
               }`}
             >
               {filter.label}
@@ -188,54 +186,57 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project) => (
+        <div className="grid md:grid-cols-2 gap-8">
+          {filteredProjects.map((project, idx) => (
             <div
               key={project.id}
-              className="group relative"
+              ref={el => projectRefs.current[idx] = el}
+              className={`transform transition-all duration-700 ease-out ${
+                visibleProjects.includes(idx)
+                  ? 'opacity-100 translate-y-0'
+                  : 'opacity-0 translate-y-12'
+              }`}
+              style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              {/* Project Card */}
-              <div className="relative h-full bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                {/* Featured Badge */}
+              {/* Project Card - Minimal Design */}
+              <div className="group relative bg-black border border-gray-800 hover:border-gray-600 transition-all duration-500">
+                {/* Featured Badge - Minimal */}
                 {project.featured && (
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 text-white text-xs font-bold">
-                      <FaStar className="text-xs" /> Featured
+                  <div className="absolute top-6 left-6 z-10">
+                    <span className="inline-flex items-center gap-1 text-xs font-mono text-gray-500">
+                      <FaStar className="text-xs" /> FEATURED
                     </span>
                   </div>
                 )}
 
-                {/* Project Image/Icon Area */}
-                <div className="relative h-48 bg-gradient-to-br from-blue-50 to-purple-50 overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-7xl opacity-20 group-hover:scale-110 transition-transform duration-500">
+                {/* Project Content */}
+                <div className="p-8 md:p-10">
+                  {/* Icon and Category */}
+                  <div className="mb-6">
+                    <span className="text-4xl opacity-50 group-hover:opacity-100 transition-opacity duration-300">
                       {project.icon}
                     </span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent"></div>
-                  <div className="absolute bottom-4 right-4">
-                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/80 backdrop-blur-sm text-gray-700">
+                    <span className="block text-xs font-mono text-gray-600 mt-3 uppercase tracking-wider">
                       {project.category}
                     </span>
                   </div>
-                </div>
 
-                {/* Project Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  {/* Title */}
+                  <h3 className="text-2xl font-light text-white mb-4 group-hover:text-gray-300 transition-colors duration-300">
                     {project.title}
                   </h3>
                   
-                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">
+                  {/* Description */}
+                  <p className="text-gray-400 mb-6 text-sm leading-relaxed font-light">
                     {project.description}
                   </p>
 
-                  {/* Highlights */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  {/* Highlights - Minimal Tags */}
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {project.highlights.map((highlight, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-medium"
+                        className="text-xs font-mono text-gray-500 border border-gray-800 px-3 py-1"
                       >
                         {highlight}
                       </span>
@@ -243,42 +244,41 @@ const Projects = () => {
                   </div>
 
                   {/* Technologies */}
-                  <div className="mb-6">
-                    <p className="text-sm text-gray-500 mb-3">Built with:</p>
+                  <div className="mb-8">
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium hover:bg-gray-200 transition-colors"
+                          className="text-xs font-mono text-gray-600"
                         >
-                          {tech}
+                          {tech}{index < project.technologies.length - 1 && ' /'}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-3 pt-4 border-t border-gray-100">
-                    <a
-                      href={project.github}
-                      className="flex-1 group/github relative overflow-hidden"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-700 opacity-0 group-hover/github:opacity-100 transition-opacity duration-300"></div>
-                      <button className="relative w-full flex items-center justify-center gap-2 px-4 py-3 bg-gray-100 text-gray-700 rounded-lg group-hover:text-white transition-all duration-300">
-                        <FaGithub />
-                        <span className="font-medium">Code</span>
-                      </button>
-                    </a>
+                  {/* Action Buttons - Minimal Style */}
+                  <div className="flex gap-4 pt-6 border-t border-gray-800">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/github flex items-center gap-2 text-sm text-gray-500 hover:text-white transition-colors duration-300"
+                      >
+                        <FaGithub className="text-sm" />
+                        <span className="font-mono">code</span>
+                      </a>
+                    )}
                     
                     <a
                       href={project.live}
-                      className="flex-1 group/live relative overflow-hidden"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/live flex items-center gap-2 text-sm text-gray-500 hover:text-white transition-colors duration-300"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover/live:opacity-100 transition-opacity duration-300"></div>
-                      <button className="relative w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg transition-all duration-300">
-                        <FaEye />
-                        <span className="font-medium">Live Demo</span>
-                      </button>
+                      <FaEye className="text-sm" />
+                      <span className="font-mono">demo</span>
                     </a>
                   </div>
                 </div>
@@ -287,20 +287,33 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-16 text-center">
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Interested in working together? I'm always open to discussing new opportunities and challenging projects.
+        {/* CTA Section - Minimal */}
+        <div className="mt-24 text-center border-t border-gray-800 pt-16">
+          <p className="text-gray-500 mb-6 font-light text-sm tracking-wide">
+            HAVE A PROJECT IN MIND?
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="inline-flex items-center gap-3 px-8 py-3 border border-gray-700 text-white hover:border-gray-500 transition-all duration-300 group"
           >
-            <span>Let's Build Something Amazing</span>
-            <FaExternalLinkAlt />
+            <span className="font-mono text-sm tracking-wider">GET IN TOUCH</span>
+            <FaExternalLinkAlt className="text-xs group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 };
