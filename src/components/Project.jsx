@@ -9,7 +9,7 @@ const Projects = () => {
   const projects = [
   {
     id: 1,
-    title: "QR Generator",
+    title: "QR Restaurant Menu Generator",
     description:
       "A versatile QR code generator application that creates customizable QR codes for URLs, text, contact information, and WiFi credentials. Includes download options and history tracking.",
     technologies: [
@@ -19,8 +19,8 @@ const Projects = () => {
       "Tailwind CSS",
       "Local Storage"
     ],
-    github: "https://github.com/DrisyaCS21/Test-Qr-generator",
-    live: "https://test-qr-generator-six.vercel.app",
+    github: "https://github.com/DrisyaCS21/restaurant",
+    live: "https://hoteldrisya.vercel.app",
     icon: "🔗",
     featured: false,
     category: "frontend",
