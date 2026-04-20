@@ -7,8 +7,34 @@ const Projects = () => {
   const projectRefs = useRef([]);
 
   const projects = [
+
   {
     id: 1,
+    title: "Courier Management System",
+    description:
+      "A complete courier management platform featuring multiple delivery tracking options and real-time updates.",
+    technologies: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS",
+      "Socket.io"
+    ],
+    // github: "https://github.com/DrisyaCS21/khajaghar",
+    live: "https://courier-frontend-theta.vercel.app",
+    icon: "🚚",
+    featured: true,
+    category: "fullstack",
+    highlights: [
+      "QR Digital Menu",
+      "Payment Integration",
+      "Real-time Updates",
+      "Order Management"
+    ]
+  },  
+  {
+    id: 2,
     title: "QR Restaurant Menu Generator",
     description:
       "A versatile QR code generator application that creates customizable QR codes for URLs, text, contact information, and WiFi credentials. Includes download options and history tracking.",
@@ -32,7 +58,7 @@ const Projects = () => {
     ]
   },
   {
-    id: 2,
+    id: 3,
     title: "Stack-Food E-commerce",
     description:
       "A comprehensive restaurant management system with admin panel for menu management, order tracking, and sales analytics. Features multilingual support and real-time order status updates.",
@@ -56,7 +82,7 @@ const Projects = () => {
     ]
   },
   {
-    id: 3,
+    id: 4,
     title: "Gym Business Website",
     description:
       "A fitness center website showcasing gym facilities, membership plans, and trainer profiles. Features integrated appointment booking and direct communication with trainers.",
@@ -76,31 +102,6 @@ const Projects = () => {
       "Membership Plans",
       "WhatsApp Integration",
       "Class Booking"
-    ]
-  },
-  {
-    id: 4,
-    title: "Khaja Ghar – Restaurant",
-    description:
-      "A complete restaurant ordering platform featuring QR code digital menus, online ordering with payment integration, and an admin dashboard for managing orders and menu items.",
-    technologies: [
-      "React",
-      "Node.js",
-      "Express",
-      "MongoDB",
-      "Tailwind CSS",
-      "Socket.io"
-    ],
-    github: "https://github.com/DrisyaCS21/khajaghar",
-    live: "https://khajaghar.vercel.app",
-    icon: "🥘",
-    featured: true,
-    category: "fullstack",
-    highlights: [
-      "QR Digital Menu",
-      "Payment Integration",
-      "Real-time Updates",
-      "Order Management"
     ]
   },
 ];
