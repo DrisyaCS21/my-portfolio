@@ -1,94 +1,96 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Command as CommandIcon } from 'lucide-react';
-import React from 'react';
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Command as CommandIcon } from "lucide-react";
+import React from "react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState('home');
+  const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Handle scroll effect for navbar background
+  // Scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle active section detection
-    useEffect(() => {
+  // Active route detection
+  useEffect(() => {
     const path = location.pathname;
-    if (path === '/') {
-      setActiveLink('home');
-    } else if (path === '/projects') {
-      setActiveLink('projects');
-    } else if (path === '/skills') {
-      setActiveLink('skills');
-    } else if (path === '/contact') {
-      setActiveLink('contact');
-    }
+
+    if (path === "/") setActiveLink("home");
+    else if (path === "/projects") setActiveLink("projects");
+    else if (path === "/skills") setActiveLink("skills");
+    else if (path === "/contact") setActiveLink("contact");
+    else if (path === "/about") setActiveLink("about");
   }, [location]);
 
+  // Navigation handler
   const handleLinkClick = (link) => {
     setActiveLink(link);
     setIsOpen(false);
-    
-    if (link === 'home') {
-      navigate('/');
-    } else if (link === 'projects') {
-      navigate('/projects');
-    } else if (link === 'skills') {
-      navigate('/skills');
-    } else if (link === 'contact') {
-      navigate('/contact');
-    }
+
+    if (link === "home") navigate("/");
+    else navigate(`/${link}`);
   };
 
   const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'contact', label: 'Contact' },
+    { id: "home", label: "Home" },
+    { id: "projects", label: "Projects" },
+    { id: "skills", label: "Skills" },
+    { id: "contact", label: "Contact" },
   ];
 
   return (
-    <nav className="fixed cursor-pointer top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
-      {/* Floating Capsule Container */}
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
+      
+      {/* MAIN NAV */}
       <div
         className={`flex items-center justify-between px-5 py-3 rounded-full border shadow-lg transition-all duration-300
-        ${scrolled
-          ? "bg-white/80 backdrop-blur-xl border-gray-200"
-          : "bg-white/50 backdrop-blur-lg border-white/40"
+        ${
+          scrolled
+            ? "bg-white/80 backdrop-blur-xl border-gray-200"
+            : "bg-white/50 backdrop-blur-lg border-white/40"
         }`}
       >
-        {/* Logo */}
-        <div className="flex-shrink-0 pr-3 cursor-pointer">
+        {/* LEFT: Logo + Terminal */}
+        <div className="flex items-center gap-3">
+
+          {/* Logo */}
           <button
-            onClick={() => handleLinkClick('home')}
+            onClick={() => handleLinkClick("home")}
             className="flex items-center cursor-pointer"
           >
-            <p className="italic font-mono text-sm sm:text-base text-gray-900 whitespace-nowrap gap-3">
+            <p className="italic font-mono text-sm sm:text-base text-gray-900">
               &lt; Drisya /&gt;
-            </p> 
-            <span 
-            className="flex items-center cursor-pointer"
-            onClick={() => navigate("/terminal")}
-            > 
-            <CommandIcon size={15}/></span>
+            </p>
           </button>
+
+          {/* Terminal Icon */}
+          <span
+            className="flex items-center cursor-pointer hover:text-green-500 transition"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/terminal");
+            }}
+          >
+            <CommandIcon size={15} />
+          </span>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* DESKTOP NAV */}
         <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <button
               key={link.id}
               onClick={() => handleLinkClick(link.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 whitespace-nowrap
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
                 ${
                   activeLink === link.id
                     ? "bg-white text-gray-900 shadow"
@@ -100,11 +102,11 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile menu button */}
+        {/* MOBILE MENU BUTTON */}
         <div className="md:hidden pl-2">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="relative w-6 h-6 cursor-pointer focus:outline-none"
+            className="relative w-6 h-6 focus:outline-none"
           >
             <span
               className={`absolute left-0 top-1 w-6 h-0.5 bg-gray-800 transition ${
@@ -125,7 +127,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile dropdown */}
+      {/* MOBILE DROPDOWN */}
       {isOpen && (
         <div className="md:hidden mt-3 bg-white/90 backdrop-blur-xl rounded-2xl shadow-lg border p-2">
           {navLinks.map((link) => (

@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 
 function Terminal() {
@@ -5,7 +6,7 @@ function Terminal() {
   const [output, setOutput] = useState([]);
 
   const commands = {
-    help: "Available commands: about, skills, projects, clear",
+    help: "Available: about, skills, projects, clear",
     about: "I am a full-stack developer 🚀",
     skills: "React, Node.js, MongoDB",
     projects: "QR Menu System, Portfolio Website",
@@ -18,7 +19,11 @@ function Terminal() {
       if (cmd === "clear") {
         setOutput([]);
       } else {
-        setOutput([...output, `> ${cmd}`, commands[cmd] || "Command not found"]);
+        setOutput((prev) => [
+          ...prev,
+          `> ${cmd}`,
+          commands[cmd] || "Command not found",
+        ]);
       }
 
       setInput("");
@@ -26,15 +31,15 @@ function Terminal() {
   };
 
   return (
-    <div style={{ background: "#000", color: "#0f0", padding: "20px" }}>
-      <div>
+    <div className="min-h-screen bg-black text-green-400 p-5 font-mono">
+      <div className="mb-4">
         {output.map((line, i) => (
           <div key={i}>{line}</div>
         ))}
       </div>
 
       <input
-        style={{ background: "black", color: "lime", border: "none" }}
+        className="bg-black border-none outline-none text-green-400 w-full"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         onKeyDown={handleCommand}
