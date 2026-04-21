@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaExternalLinkAlt, FaStar, FaCode, FaEye } from 'react-icons/fa';
-
+import { useNavigate } from 'react-router-dom';
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [visibleProjects, setVisibleProjects] = useState([]);
   const projectRefs = useRef([]);
-
+  
+  const navigate = useNavigate();
   const projects = [
 
   {
@@ -297,7 +298,12 @@ const Projects = () => {
             href="#contact"
             className="inline-flex items-center gap-3 px-8 py-3 border border-gray-700 text-white hover:border-gray-500 transition-all duration-300 group"
           >
-            <span className="font-mono text-sm tracking-wider">GET IN TOUCH</span>
+            <span className="font-mono text-sm tracking-wider"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/contact");
+            }}
+            >GET IN TOUCH</span>
             <FaExternalLinkAlt className="text-xs group-hover:translate-x-1 transition-transform" />
           </a>
         </div>

@@ -6,37 +6,45 @@ function Terminal() {
   const navigate = useNavigate();
 
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState([]);
+  const [history, setHistory] = useState([]);
+  const [bootDone, setBootDone] = useState(false);
 
-  // ✅ dynamic last login
   const lastLogin = new Date().toLocaleString();
 
-  // Boot sequence
-  useEffect(() => {
-    const bootSequence = [
-      "Welcome to DRISYA OS 1.0 (React Shell)",
-      `Last login: ${lastLogin}`,
-      "",
-      "Type 'help' for available commands.",
-      "",
-    ];
+  // Linux-style boot messages
+  const bootSequence = [
+    "Booting DRISYA OS 1.0...",
+    "Loading kernel modules...",
+    "Mounting filesystem...",
+    "Starting network services...",
+    "Initializing UI shell...",
+    "",
+    "Welcome to DRISYA OS 1.0 (React Shell)",
+    `Last login: ${lastLogin}`,
+    "",
+    "Type 'help' for available commands.",
+    "",
+  ];
 
+  // ANIMATED BOOT
+  useEffect(() => {
     let i = 0;
 
     const interval = setInterval(() => {
-      setOutput((prev) => [...prev, bootSequence[i]]);
+      setHistory((prev) => [...prev, bootSequence[i]]);
       i++;
 
       if (i === bootSequence.length) {
         clearInterval(interval);
+        setBootDone(true);
       }
-    }, 300);
+    }, 250); // speed of boot animation
 
     return () => clearInterval(interval);
   }, []);
 
-  // File system simulation
-  const fileSystem = {
+  // COMMANDS
+  const commands = {
     help: `
 Available commands:
 ls
@@ -47,7 +55,6 @@ cd contact
 clear
 whoami
     `,
-
     ls: `
 assets/
 components/
@@ -56,23 +63,17 @@ skills/
 projects/
 contact/
     `,
+    whoami: "drisya - full stack developer 🚀",
   };
 
-  const handleCommand = (cmdRaw) => {
+  const runCommand = (cmdRaw) => {
     const cmd = cmdRaw.trim().toLowerCase();
 
-    // HELP
-    if (cmd === "help") return fileSystem.help;
-
-    // WHOAMI (personality touch)
-    if (cmd === "whoami") {
-      return "drisya - full stack developer | MERN | React enthusiast 🚀";
+    if (cmd === "clear") {
+      setHistory([]);
+      return null;
     }
 
-    // LS
-    if (cmd === "ls") return fileSystem.ls;
-
-    // NAVIGATION
     if (cmd === "cd about") {
       navigate("/about");
       return "opening /about ...";
@@ -93,24 +94,18 @@ contact/
       return "opening /contact ...";
     }
 
-    // CLEAR
-    if (cmd === "clear") {
-      setOutput([]);
-      return null;
-    }
-
-    return `command not found: ${cmd}`;
+    return commands[cmd] || `command not found: ${cmd}`;
   };
 
   const onKeyDown = (e) => {
-    if (e.key === "Enter") {
-      const result = handleCommand(input);
+    if (e.key === "Enter" && bootDone) {
+      const result = runCommand(input);
 
-      setOutput((prev) => [...prev, `$ ${input}`]);
-
-      if (result) {
-        setOutput((prev) => [...prev, result]);
-      }
+      setHistory((prev) => [
+        ...prev,
+        `$ ${input}`,
+        ...(result ? [result] : []),
+      ]);
 
       setInput("");
     }
@@ -119,30 +114,27 @@ contact/
   return (
     <div className="bg-black text-green-400 min-h-screen p-5 font-mono">
 
-      {/* Output */}
-      <div className="whitespace-pre-line mb-3">
-        {output.map((line, i) => (
+      {/* TERMINAL OUTPUT */}
+      <div className="whitespace-pre-line mb-4">
+        {history.map((line, i) => (
           <div key={i}>{line}</div>
         ))}
       </div>
 
-      {/* Prompt UI */}
-      <div className="flex items-center gap-2">
-        <span className="text-green-500">drisya@portfolio</span>
-        <span className="text-gray-400">:</span>
-        <span className="text-blue-400">~/home</span>
-        <span className="text-white">$</span>
+      {/* INPUT (only after boot finishes) */}
+      {bootDone && (
+        <div className="flex gap-2">
+          <span>drisya@portfolio:~/home$</span>
 
-        <input
-          className="bg-black text-green-400 outline-none w-full"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={onKeyDown}
-          placeholder="type command..."
-          autoFocus
-        />
-      </div>
-
+          <input
+            className="bg-black text-green-400 outline-none w-full"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={onKeyDown}
+            autoFocus
+          />
+        </div>
+      )}
     </div>
   );
 }
