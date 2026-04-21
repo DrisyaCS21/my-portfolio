@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Command as CommandIcon } from 'lucide-react';
 import React from 'react';
 
 const Navbar = () => {
@@ -55,7 +56,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
+    <nav className="fixed cursor-pointer top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300">
       {/* Floating Capsule Container */}
       <div
         className={`flex items-center justify-between px-5 py-3 rounded-full border shadow-lg transition-all duration-300
@@ -65,14 +66,19 @@ const Navbar = () => {
         }`}
       >
         {/* Logo */}
-        <div className="flex-shrink-0 pr-3">
+        <div className="flex-shrink-0 pr-3 cursor-pointer">
           <button
             onClick={() => handleLinkClick('home')}
-            className="flex items-center"
+            className="flex items-center cursor-pointer"
           >
-            <p className="italic font-mono text-sm sm:text-base text-gray-900 whitespace-nowrap">
+            <p className="italic font-mono text-sm sm:text-base text-gray-900 whitespace-nowrap gap-3">
               &lt; Drisya /&gt;
-            </p>
+            </p> 
+            <span 
+            className="flex items-center cursor-pointer"
+            onClick={() => navigate("/terminal")}
+            > 
+            <CommandIcon size={15}/></span>
           </button>
         </div>
 
@@ -98,7 +104,7 @@ const Navbar = () => {
         <div className="md:hidden pl-2">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="relative w-6 h-6"
+            className="relative w-6 h-6 cursor-pointer focus:outline-none"
           >
             <span
               className={`absolute left-0 top-1 w-6 h-0.5 bg-gray-800 transition ${

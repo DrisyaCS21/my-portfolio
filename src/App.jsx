@@ -7,6 +7,7 @@ import Skills from './components/Skills'
 import About from './components/About'
 import Contact from './components/Contact'
 import Layout from './components/Layout';
+import Terminal from './components/Terminal';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/projects" element={<Projects />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/terminal" element={<Terminal />} />
         </Routes>
     </Layout>
     </Router>
