@@ -1,18 +1,41 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Terminal() {
   const navigate = useNavigate();
 
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState([
-    "Welcome to Drisya Portfolio Terminal v1.0 (React)",
-    "Type 'help' for commands",
-    "",
-  ]);
+  const [output, setOutput] = useState([]);
 
-  // Your folder structure simulation
+  // ✅ dynamic last login
+  const lastLogin = new Date().toLocaleString();
+
+  // Boot sequence
+  useEffect(() => {
+    const bootSequence = [
+      "Welcome to DRISYA OS 1.0 (React Shell)",
+      `Last login: ${lastLogin}`,
+      "",
+      "Type 'help' for available commands.",
+      "",
+    ];
+
+    let i = 0;
+
+    const interval = setInterval(() => {
+      setOutput((prev) => [...prev, bootSequence[i]]);
+      i++;
+
+      if (i === bootSequence.length) {
+        clearInterval(interval);
+      }
+    }, 300);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // File system simulation
   const fileSystem = {
     help: `
 Available commands:
@@ -22,14 +45,16 @@ cd skills
 cd projects
 cd contact
 clear
+whoami
     `,
 
     ls: `
 assets/
 components/
-App.jsx
-main.jsx
-index.css
+about/
+skills/
+projects/
+contact/
     `,
   };
 
@@ -39,37 +64,42 @@ index.css
     // HELP
     if (cmd === "help") return fileSystem.help;
 
+    // WHOAMI (personality touch)
+    if (cmd === "whoami") {
+      return "drisya - full stack developer | MERN | React enthusiast 🚀";
+    }
+
     // LS
     if (cmd === "ls") return fileSystem.ls;
 
-    // NAVIGATION COMMANDS
+    // NAVIGATION
     if (cmd === "cd about") {
       navigate("/about");
-      return "→ opening about page...";
+      return "opening /about ...";
     }
 
     if (cmd === "cd skills") {
       navigate("/skills");
-      return "→ opening skills page...";
+      return "opening /skills ...";
     }
 
     if (cmd === "cd projects") {
       navigate("/projects");
-      return "→ opening projects page...";
+      return "opening /projects ...";
     }
 
     if (cmd === "cd contact") {
       navigate("/contact");
-      return "→ opening contact page...";
+      return "opening /contact ...";
     }
 
-    // CLEAR SCREEN
+    // CLEAR
     if (cmd === "clear") {
       setOutput([]);
       return null;
     }
 
-    return "Command not found. Type 'help'";
+    return `command not found: ${cmd}`;
   };
 
   const onKeyDown = (e) => {
@@ -88,7 +118,7 @@ index.css
 
   return (
     <div className="bg-black text-green-400 min-h-screen p-5 font-mono">
-      
+
       {/* Output */}
       <div className="whitespace-pre-line mb-3">
         {output.map((line, i) => (
@@ -96,11 +126,15 @@ index.css
         ))}
       </div>
 
-      {/* Input Line */}
-      <div className="flex">
-        <span className="text-green-500">$</span>
+      {/* Prompt UI */}
+      <div className="flex items-center gap-2">
+        <span className="text-green-500">drisya@portfolio</span>
+        <span className="text-gray-400">:</span>
+        <span className="text-blue-400">~/home</span>
+        <span className="text-white">$</span>
+
         <input
-          className="bg-black text-green-400 outline-none ml-2 w-full"
+          className="bg-black text-green-400 outline-none w-full"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={onKeyDown}
@@ -108,6 +142,7 @@ index.css
           autoFocus
         />
       </div>
+
     </div>
   );
 }
