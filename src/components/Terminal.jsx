@@ -1,29 +1,85 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Terminal() {
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState([]);
+  const navigate = useNavigate();
 
-  const commands = {
-    help: "Available: about, skills, projects, clear",
-    about: "I am a full-stack developer 🚀",
-    skills: "React, Node.js, MongoDB",
-    projects: "QR Menu System, Portfolio Website",
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState([
+    "Welcome to Drisya Portfolio Terminal v1.0 (React)",
+    "Type 'help' for commands",
+    "",
+  ]);
+
+  // Your folder structure simulation
+  const fileSystem = {
+    help: `
+Available commands:
+ls
+cd about
+cd skills
+cd projects
+cd contact
+clear
+    `,
+
+    ls: `
+assets/
+components/
+App.jsx
+main.jsx
+index.css
+    `,
   };
 
-  const handleCommand = (e) => {
-    if (e.key === "Enter") {
-      const cmd = input.toLowerCase();
+  const handleCommand = (cmdRaw) => {
+    const cmd = cmdRaw.trim().toLowerCase();
 
-      if (cmd === "clear") {
-        setOutput([]);
-      } else {
-        setOutput((prev) => [
-          ...prev,
-          `> ${cmd}`,
-          commands[cmd] || "Command not found",
-        ]);
+    // HELP
+    if (cmd === "help") return fileSystem.help;
+
+    // LS
+    if (cmd === "ls") return fileSystem.ls;
+
+    // NAVIGATION COMMANDS
+    if (cmd === "cd about") {
+      navigate("/about");
+      return "→ opening about page...";
+    }
+
+    if (cmd === "cd skills") {
+      navigate("/skills");
+      return "→ opening skills page...";
+    }
+
+    if (cmd === "cd projects") {
+      navigate("/projects");
+      return "→ opening projects page...";
+    }
+
+    if (cmd === "cd contact") {
+      navigate("/contact");
+      return "→ opening contact page...";
+    }
+
+    // CLEAR SCREEN
+    if (cmd === "clear") {
+      setOutput([]);
+      return null;
+    }
+
+    return "Command not found. Type 'help'";
+  };
+
+  const onKeyDown = (e) => {
+    if (e.key === "Enter") {
+      const result = handleCommand(input);
+
+      setOutput((prev) => [...prev, `$ ${input}`]);
+
+      if (result) {
+        setOutput((prev) => [...prev, result]);
       }
 
       setInput("");
@@ -31,20 +87,27 @@ function Terminal() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-green-400 p-5 font-mono">
-      <div className="mb-4">
+    <div className="bg-black text-green-400 min-h-screen p-5 font-mono">
+      
+      {/* Output */}
+      <div className="whitespace-pre-line mb-3">
         {output.map((line, i) => (
           <div key={i}>{line}</div>
         ))}
       </div>
 
-      <input
-        className="bg-black border-none outline-none text-green-400 w-full"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyDown={handleCommand}
-        placeholder="type help..."
-      />
+      {/* Input Line */}
+      <div className="flex">
+        <span className="text-green-500">$</span>
+        <input
+          className="bg-black text-green-400 outline-none ml-2 w-full"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={onKeyDown}
+          placeholder="type command..."
+          autoFocus
+        />
+      </div>
     </div>
   );
 }
