@@ -52,7 +52,7 @@ const Navbar = () => {
       
       {/* MAIN NAV */}
       <div
-        className={`flex items-center justify-between px-5 py-3 rounded-full border shadow-lg transition-all duration-300
+        className={`flex items-center cursor-pointer justify-between px-5 py-3 rounded-full border shadow-lg transition-all duration-300
         ${
           scrolled
             ? "bg-white/80 backdrop-blur-xl border-gray-200"
@@ -106,7 +106,7 @@ const Navbar = () => {
         <div className="md:hidden pl-2">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="relative w-6 h-6 focus:outline-none"
+            className="relative cursor-pointer w-6 h-6 focus:outline-none"
           >
             <span
               className={`absolute left-0 top-1 w-6 h-0.5 bg-gray-800 transition ${
