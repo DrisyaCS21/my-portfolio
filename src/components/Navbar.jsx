@@ -68,7 +68,7 @@ const Navbar = () => {
   return (
     <>
       {/* NAVBAR */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+      <nav className=" cursor-pointer fixed top-6 left-1/2 -translate-x-1/2 z-50">
         <div
           className={`flex items-center justify-between gap-6 px-6 py-3 rounded-full border shadow-lg transition-all duration-300
           ${
@@ -78,9 +78,9 @@ const Navbar = () => {
           }`}
         >
           {/* LEFT */}
-          <div className="flex items-center gap-3 min-w-[140px]">
+          <div className=" flex items-center gap-3 min-w-[140px]">
             <button onClick={() => handleLinkClick("home")}>
-              <p className="italic font-mono text-sm text-gray-900">
+              <p className="cursor-pointer italic font-mono text-sm text-gray-900">
                 &lt; Drisya /&gt;
               </p>
             </button>
@@ -99,7 +99,7 @@ const Navbar = () => {
           </div>
 
           {/* CENTER NAV */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className=" hidden md:flex items-center gap-2">
             {navLinks.map((link) => (
               <button
                 key={link}
@@ -127,7 +127,7 @@ const Navbar = () => {
 
         {/* MOBILE DROPDOWN */}
         {isOpen && (
-          <div className="md:hidden mt-3 bg-white/90 backdrop-blur-xl rounded-xl shadow-lg p-2">
+          <div className="  md:hidden mt-3 bg-white/90 backdrop-blur-xl rounded-xl shadow-lg p-2">
             {navLinks.map((link) => (
               <button
                 key={link}
