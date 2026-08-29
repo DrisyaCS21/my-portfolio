@@ -50,7 +50,7 @@ const Projects = () => {
     live: "https://hoteldrisya.vercel.app",
     icon: "🔗",
     featured: false,
-    category: "frontend",
+    category: "fullstack",
     highlights: [
       "Multiple QR Code Types",
       "Customizable Design",
@@ -94,9 +94,9 @@ const Projects = () => {
       "WhatsApp API"
     ],
     github: "https://github.com/DrisyaCS21/gym-website",
-    live: "https://www.sastogadget.com/",
+    live: "https://pinnacel-fitness.vercel.app",
     icon: "🏋️",
-    featured: true,
+    featured: false,
     category: "frontend",
     highlights: [
       "Trainer Profiles",
