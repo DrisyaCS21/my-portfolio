@@ -23,7 +23,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const navLinks = ["home", "projects", "skills", "contact"];
+  const navLinks = ["Home", "Projects", "Skills", "Contact", "Certificates"];
 
   const songs = [
     { id: "LJRA8UrlqCM", title: "Can't Help Falling in love", artist: "Elvis Presley" },
@@ -70,15 +70,15 @@ const Navbar = () => {
       {/* NAVBAR */}
       <nav className=" cursor-pointer fixed top-6 left-1/2 -translate-x-1/2 z-50">
         <div
-          className={`flex items-center justify-between gap-6 px-6 py-3 rounded-full border shadow-lg transition-all duration-300
+          className={`cursor-pointer flex items-center justify-between gap-6 px-6 py-3 rounded-full border shadow-lg transition-all duration-300
           ${
             scrolled
               ? "bg-white/80 backdrop-blur-xl border-gray-200"
-              : "bg-white/50 backdrop-blur-lg border-white/40"
+              : "bg-white/50 backdrop-blur-lg border-pink-200"
           }`}
         >
           {/* LEFT */}
-          <div className=" flex items-center gap-3 min-w-[140px]">
+          <div className="cursor-pointer flex items-center gap-3 min-w-[140px]">
             <button onClick={() => handleLinkClick("home")}>
               <p className="cursor-pointer italic font-mono text-sm text-gray-900">
                 &lt; Drisya /&gt;
@@ -99,12 +99,12 @@ const Navbar = () => {
           </div>
 
           {/* CENTER NAV */}
-          <div className=" hidden md:flex items-center gap-2">
+          <div className="cursor-pointer hidden md:flex items-center gap-2">
             {navLinks.map((link) => (
               <button
                 key={link}
                 onClick={() => handleLinkClick(link)}
-                className={`px-4 py-1.5 rounded-full text-sm transition-all
+                className={`cursor-pointer px-4 py-1.5 rounded-full text-sm transition-all
                   ${
                     activeLink === link
                       ? "bg-white text-gray-900 shadow-sm"
@@ -117,22 +117,22 @@ const Navbar = () => {
           </div>
 
           {/* RIGHT SPACER (important for symmetry) */}
-          <div className="hidden md:block min-w-[140px]" />
+          <div className="cursor-pointer hidden md:block min-w-[140px]" />
 
           {/* MOBILE MENU */}
-          <div className="md:hidden">
+          <div className="cursor-pointer md:hidden">
             <button onClick={() => setIsOpen(!isOpen)}>☰</button>
           </div>
         </div>
 
         {/* MOBILE DROPDOWN */}
         {isOpen && (
-          <div className="  md:hidden mt-3 bg-white/90 backdrop-blur-xl rounded-xl shadow-lg p-2">
+          <div className="cursor-pointer md:hidden mt-1 bg-white/50 backdrop-blur-xl rounded-xl shadow-lg p-2">
             {navLinks.map((link) => (
               <button
                 key={link}
                 onClick={() => handleLinkClick(link)}
-                className="block w-full text-left px-4 py-2 hover:bg-gray-100 rounded"
+                className="cursor-pointer block w-full text-left px-4 py-2 hover:bg-gray-100 rounded"
               >
                 {link}
               </button>
