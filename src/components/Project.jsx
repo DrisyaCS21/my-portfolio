@@ -25,7 +25,7 @@ const Projects = () => {
     // github: "https://github.com/DrisyaCS21/khajaghar",
     live: "https://courier-frontend-theta.vercel.app",
     icon: "🚚",
-    featured: true,
+    featured: false,
     category: "fullstack",
     highlights: [
       "QR Digital Menu",
@@ -163,10 +163,10 @@ const Projects = () => {
           </div>
           
           <h2 className="text-4xl md:text-5xl font-light text-white mb-4 tracking-tight">
-            Featured Work
+            My Work
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto text-lg font-light">
-            A selection of my recent projects
+            A selection of my recent projects that i have worked on, showcasing my skills in web development and design. Each project highlights my ability to create functional and visually appealing applications.
           </p>
         </div>
 
