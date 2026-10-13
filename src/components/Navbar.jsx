@@ -42,16 +42,37 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const path = location.pathname;
-    if (path === "/") setActiveLink("home");
-    else setActiveLink(path.replace("/", ""));
-  }, [location]);
+  
+useEffect(() => {
+  const path = location.pathname;
 
-  const handleLinkClick = (link) => {
-    setIsOpen(false);
-    navigate(link === "home" ? "/" : `/${link}`);
+  const activeLinks = {
+    "/": "Home",
+    "/projects": "Projects",
+    "/skills": "Skills",
+    "/contact": "Contact",
+    "/certificate": "Certificates",
   };
+
+  setActiveLink(activeLinks[path] || "");
+}, [location.pathname]);
+
+
+  
+ const handleLinkClick = (link) => {
+    setIsOpen(false);
+
+    const routes = {
+      Home: "/",
+      Projects: "/projects",
+      Skills: "/skills",
+      Contact: "/contact",
+      Certificates: "/certificate",
+    };
+
+    navigate(routes[link] || "/");
+  };
+
 
   const nextSong = () => {
     setCurrentIndex((prev) => (prev + 1) % songs.length);

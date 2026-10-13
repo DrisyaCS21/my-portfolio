@@ -8,12 +8,12 @@ import Skills from './components/Skills';
 import About from './components/About';
 import Contact from './components/Contact';
 import Terminal from './components/Terminal';
+import Certificate from './components/Certificate';
 
 const App = () => {
   return (
     <Router>
       <Navbar />
-
       <Routes>
         {/* HOME */}
         <Route path="/" element={<Hero />} />
@@ -24,6 +24,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/terminal" element={<Terminal />} />
+        <Route path="/certificate" element={<Certificate />} />
       </Routes>
     </Router>
   );
