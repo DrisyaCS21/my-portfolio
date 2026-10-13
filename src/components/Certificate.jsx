@@ -81,8 +81,8 @@ const Certificate = () => {
 
         {/* PAGE INTRO */}
         <header className="mb-14 border-b border-[#DCD2C3] pb-10 sm:mb-16 sm:pb-12">
-          <p className="mb-5 text-[11px] font-medium uppercase tracking-[0.2em] text-[#8B7862]">
-            Portfolio / Certificates
+          <p className="mb-5 text-[11px] font-medium tracking-[0.2em] text-[#8B7862]">
+            My Certificates are a testament to my dedication to continuous learning and growth in the field of web development. Each certificate represents a milestone in my journey, showcasing the skills and knowledge I've acquired along the way.
           </p>
 
           <h1 className="font-serif text-4xl font-normal leading-tight tracking-[-0.035em] sm:text-5xl md:text-6xl">

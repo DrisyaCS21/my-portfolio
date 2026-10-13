@@ -51,7 +51,7 @@ useEffect(() => {
     "/projects": "Projects",
     "/skills": "Skills",
     "/contact": "Contact",
-    "/certificate": "Certificates",
+    "/certificate": "My Certificates",
   };
 
   setActiveLink(activeLinks[path] || "");
